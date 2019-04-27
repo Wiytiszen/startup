@@ -28,6 +28,12 @@ main{
   text-align: center;
 }
 section{padding: 20px;}
+button{
+  color: white;
+  background: #60CD62;
+  padding: 20px;
+  font-size: 1.5rem;
+}
 article{
   padding: 20px;
 }
@@ -38,8 +44,8 @@ article{
 .show{
   opacity: 1;
   color: orange;
-  font-size: 3rem;
-  transition:all 3s ease-in;
+  font-size: 2rem;
+  transition:all 1s ease-in;
 }
 img{
   width:90%;
