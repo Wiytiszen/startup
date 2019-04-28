@@ -28,6 +28,10 @@ main{
   text-align: center;
 }
 section{padding: 20px;}
+joke{
+  color: orangered;
+  font: 1.5rem;
+}
 button{
   color: white;
   background: #60CD62;
@@ -38,7 +42,7 @@ article{
   padding: 20px;
 }
 
-.hidden{
+/*.hidden{
   opacity: 0;
 }
 .show{
@@ -47,6 +51,8 @@ article{
   font-size: 2rem;
   transition:all 1s ease-in;
 }
+*/
+
 img{
   width:90%;
 }
