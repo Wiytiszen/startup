@@ -23,14 +23,11 @@ nav ul li{
   display: inline-block;
   padding: 10px;
 }
-
 main{
   text-align: center;
 }
-section{padding: 20px;}
-joke{
-  color: orangered;
-  font: 1.5rem;
+section{
+  padding: 20px;
 }
 .left-side{
   width: 25%;
