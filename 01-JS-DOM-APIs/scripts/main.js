@@ -1,24 +1,20 @@
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
-    return xhr;
-  
-  } 
-function MakeCORSRequest(params ="javascript"){
-  let url = `https://api.github.com/search/repositories?q=${params}`;
-  const xhr = createCORSRequest('GET',url);
-  if (!xhr) {
-    throw new Error('CORS not supported');
-  }
-  xhr.onload = function() {
-    var responseText = xhr.responseText;
-    console.log(responseText);
-    // process the response.
-   };
-   
-   xhr.onerror = function() {
-     console.log('There was an error!');
-   };
-   xhr.send();
+function doSearch(params ="javascript"){
+  let url = "https://api.github.com/search/repositories?q="+params;
+    fetch(url)
+    .then((data)=>data.json())
+    .then((json)=>{
+      json.items.forEach((element) => {
+        let ul = document.querySelector('#listResult');
+        let li = document.createElement('li');
+        let anchor = document.createElement('a');
+        anchor.setAttribute("href",element.svn_url);
+        let node = document.createTextNode(element.name);
+        anchor.appendChild(node);
+        li.appendChild(anchor);
+        ul.appendChild(li);
+      });
+    })
+    .catch((error)=> console.log("something went wrong"));
 }
-MakeCORSRequest();
+
+doSearch();
