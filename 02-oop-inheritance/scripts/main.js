@@ -10,9 +10,19 @@ class Movie{
   pause(){console.log("Paused")}
   resume(){console.log("Keep playing")}
 }
-
+class Actor{
+  constructor(name,age){
+    this.name = name;
+    this.age = age;
+  }
+}
+// instances of Movie Class
 const movie1 = new Movie("Scent of a woman",1992,156);
 const movie2 = new Movie("Titanic",1997,195);
 const movie3 = new Movie("Die unendliche Geschichte",1984,102);
 const movie4 = new Movie("King's Lion",1994,47);
 const movie5 = new Movie("Gladiator",1992,155);
+
+// instances of Actor
+
+const actor1 = new Actor("Saul",46);
