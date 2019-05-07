@@ -98,3 +98,19 @@ var logger = new Logger();
 movie1.on("playing", () => logger.log("play"));
 
 movie1.play(); 
+
+// Mixin
+
+const mixin = {
+  share: function(name){
+      console.log(`${name} share ${this.title}`);
+  },
+  like: function(name){
+      console.log(`${name} likes ${this.title}`)
+  }
+}
+
+Object.assign(movie1,mixin);
+
+movie1.share("Martin Wiytiszen");
+movie1.like("Debora Pardo"); 
