@@ -37,6 +37,18 @@ class EventEmitter{
   }
 }
 
+class Movie extends EventEmitter{
+  constructor(name,year,duration){
+    super();
+    this.title = name;
+    this.year = year;
+    this.duration =duration;
+  }
+  play(){super.emit("playing")}
+  pause(){super.emit("stopped")}
+  resume(){super.emit("resumed")}
+}
+
 // instances of Movie Class
 const movie1 = new Movie("Scent of a woman",1992,156);
 const movie2 = new Movie("Titanic",1997,195);
