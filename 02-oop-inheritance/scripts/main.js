@@ -1,32 +1,25 @@
-class Actor{
-  constructor(name,age){
-    this.name = name;
-    this.age = age;
-  }
-}
-
+/********** EventEmitter ****/
 class EventEmitter{
 
   constructor(){
-    this.listeners = {}; //guardar los eventos en Arrays, con sus respectivos Callbacks
+    this.listeners = {};
   }
-
-  on(eventName,callBacks){ // cargo los eventos nuevos o los callbacks
-    if(!this.listeners[eventName]){// si el evento existe en "events"... 
-      this.listeners[eventName]=[];// cargo en el evento existente una funcion
+  on(eventName,callBacks){
+    if(!this.listeners[eventName]){ 
+      this.listeners[eventName]=[];
     }
     this.listeners[eventName].push(callBacks);
   }
-  emit(eventName){ // Avisa que sucede un evento
-    if (this.events[eventName]){
-      this.events[eventName].forEach( fn => {
+  emit(eventName){
+      if (this.listeners[eventName]){
+      this.listeners[eventName].forEach( fn => {
          fn.apply(); 
         }
       );
     }
   }
   off(eventName,callBacks){
-    let lis = this.events[eventName];
+    let lis = this.listeners[eventName];
     if (!lis){ return this; }
     for(let i = lis.length; i > 0; i--) {
       if (lis[i] === callBacks) {
@@ -37,21 +30,71 @@ class EventEmitter{
   }
 }
 
+/********** Movie ****/
+
 class Movie extends EventEmitter{
   constructor(name,year,duration){
     super();
     this.title = name;
     this.year = year;
     this.duration =duration;
+    this.cast = [];
   }
+
   play(){super.emit("playing")}
   pause(){super.emit("stopped")}
   resume(){super.emit("resumed")}
+  addCast(...actors){
+
+    for (let i=0; i<actors.length; i++){
+        if (actors[i].length>1){
+            for(let j=0; j<actors[i].length; j++){
+                this.cast.push(actors[i][j]);
+            }
+        }else{
+            this.cast.push(actors[i]);
+        }
+    }
+  }
 }
 
+/**********Actor ****/
+
+class Actor{
+  constructor(name, age){
+      this.name = name;
+      this.age = age;
+  }
+}
+
+/**********Logger ****/
+
+class Logger{
+
+  constructor(){}
+
+  log(info){
+      console.log(`The '${info}' has been emited`);
+  }
+}
 // instances of Movie Class
 const movie1 = new Movie("Scent of a woman",1992,156);
-const movie2 = new Movie("Titanic",1997,195);
-const movie3 = new Movie("Die unendliche Geschichte",1984,102);
-const movie4 = new Movie("King's Lion",1994,47);
-const movie5 = new Movie("Gladiator",1992,155);
+
+// adding cast
+const actor1 = new Actor("Al Pacino",79);
+const actor2 = new Actor("Chris O'Donnell",48);
+const otherActors = [
+  new Actor("Gabriella Anwar",49),
+  new Actor("James Rebhorn",66),
+  new Actor("Philip Seymour Hoffman",47)
+]
+// Calling addCast
+movie1.addCast(actor1,actor2,otherActors);
+console.log(movie1.cast);
+
+// Using the logger 
+var logger = new Logger();
+
+movie1.on("playing", () => logger.log("play"));
+
+movie1.play(); 
