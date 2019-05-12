@@ -1,4 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+bash.exe.stackdump
+package-lock.json
+package.json
 ../../.vscode/
 ../../02-oop-inheritance/node_modules/
 ../../02-oop-inheritance/package-lock.json
@@ -23,3 +26,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
