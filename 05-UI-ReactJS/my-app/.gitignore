@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+../../.vscode/
+../../02-oop-inheritance/node_modules/
+../../02-oop-inheritance/package-lock.json
 # dependencies
 /node_modules
 /.pnp
