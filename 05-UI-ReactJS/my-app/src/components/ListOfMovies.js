@@ -1,11 +1,17 @@
 import React from 'react';
-import Movie from './Movies'
-export default class App extends React.Component{
+import MovieItem from './Movies';
+
+export default class MovieList extends React.Component{
+  constructor(props){
+    super(props);
+  }
   render(){
     return(
-    <div>
-      <Movie />
-    </div>
+      this.props.movies.map(movie=>
+        <MovieItem 
+        key={movie.id}  
+        movie={movie}/>
+    )
     );
   }
 }
