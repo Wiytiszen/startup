@@ -1,34 +1,38 @@
 import React from 'react';
-import MovieList from './components/ListOfMovies';
-import CreateMovie from './components/CreateMovie';
+import Form from './components/Form';
+import MovieList from './components/MovieList';
+import './App.css';
 
-export default class App extends React.Component{
+class App extends React.Component {
+
   constructor(props){
     super(props);
     this.state={
-      movies : [
-        {id:0,title:"Up",duration :"80min"}
-      ],
+      movies:[],
     }
-    this.createMovie = this.createMovie.bind(this);
-  }
-  createMovie(movie){
 
-    const {title,duration} = movie;
-    if(title && duration){
-      this.setState({
-        movies: [ ...this.state.movies,{id:0,title,duration}]
-      }) ;
-    }
+    this.addMovie = this.addMovie.bind(this);
+    this.removeMovie = this.removeMovie.bind(this);
   }
+
+  addMovie(movie){
+    const {movies} = this.state;
+     this.setState( prevState => ({movies: [...prevState.movies, movie]}));
+  }
+  removeMovie(id){
+    this.setState(prevState => ({movies: prevState.movies.filter( movie => movie.id !== id)}));
+  }
+
   render(){
-    return(
-    <div>
-      <CreateMovie createMovie ={this.createMovie}/>
-      <MovieList 
-        movies={this.state.movies}
-      />
-    </div>
-    );
+    const {movies} = this.state;
+    return (
+      <div className="App">
+        <header>Movie List</header>
+        <Form handleAddMovie={this.addMovie}/>
+        <MovieList movies={movies} handleRemoveMovie={this.removeMovie}/>
+      </div>
+    )
   }
 }
+
+export default App;
