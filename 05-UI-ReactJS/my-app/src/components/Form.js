@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addMovie } from '../redux/actions';
 
 class Form extends React.Component{
 
@@ -23,7 +25,7 @@ class Form extends React.Component{
     if(name && year && duration){
       const {isEditing} = this.props;
       const { id } = this.state;
-      this.props.handleAddMovie(this.state);
+      this.props.addMovie(this.state);
       this.setState({ id: isEditing ? id : id + 1,
         name: '',
         year: '',
@@ -36,12 +38,14 @@ class Form extends React.Component{
     if (prevProps.isEditing !== this.props.isEditing && this.props.isEditing){
       const {name, year, duration} = this.props.movieToEdit;
       this.setState({name, year, duration});
+      console.log(this.props.movieToEdit)
     }
   }
 
   render(){
     const { name, year, duration } = this.state;
     const { isEditing } = this.props;
+    console.log(this.props.movieToEdit);
     return(
       <div className="form">
         <input type="text" id="name" value={name} onChange={this.handleChange} placeholder="Enter movie name"/>
@@ -54,4 +58,13 @@ class Form extends React.Component{
 
 }
 
-export default Form;
+const mapStateToProps = ({isEditing, movieToEdit}) => ({
+  isEditing, 
+  movieToEdit
+})
+
+const mapDispatchToProps = {
+  addMovie
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
