@@ -8,8 +8,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>Movie List</header>
-        <Form/>
-        <MovieList/>
+          <Form/>
+          <MovieList/> 
       </div>
     )
   }
