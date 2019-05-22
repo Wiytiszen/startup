@@ -1,0 +1,21 @@
+header{
+  font-size: 2em;
+}
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  margin: 0 auto;
+  width: 60%;
+  background:#C1C7CD;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  margin : 20px auto; 
+  width: 40%;
+}
+input{
+  margin:5px;
+}
